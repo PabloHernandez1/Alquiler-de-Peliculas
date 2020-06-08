@@ -1,0 +1,116 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.OleDb;
+
+namespace Prueba_tecno_Pablo_Hernandez
+{
+    public partial class Fff : Form
+    {
+        public Fff()
+        {
+            InitializeComponent();
+        }
+        OleDbConnection con = new OleDbConnection(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\orego\Desktop\Base de Datos oficial.mdb");
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            Registro c = new Registro();
+            c.Visible = true;
+            Visible = false;
+        }
+
+        private void bunifuImageButton1_Click(object sender, EventArgs e)
+        {
+            string usuario = textBox1.Text;
+            string password = textBox2.Text;
+
+            if (usuario == "" && password == "")
+            {
+                MessageBox.Show("Falta usuario y password");
+                return;
+            }
+            else if (usuario == "")
+            {
+                MessageBox.Show("Falta usuario");
+                return;
+            }
+            else if (password == "")
+            {
+                MessageBox.Show("Falta contraseña");
+                return;
+            }
+
+            con.Open();
+   
+            OleDbDataAdapter da = new OleDbDataAdapter("SELECT * FROM usuarios WHERE usuario ='" + textBox1.Text + "'and password='" + textBox2.Text + "'", con);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            int contador = dt.Rows.Count;
+            if (contador > 0)
+            {
+
+                string tipo = dt.Rows[0]["tipo_usuario"].ToString();
+                if (tipo == "1")
+                {
+                    this.Hide();
+                    Menu frm = new Menu();
+                    frm.Show();
+                }
+                else if (tipo == "2")
+                {
+                    this.Hide();
+                    Menu frm1 = new Menu();
+                    frm1.Show();
+                }
+                else if (tipo == "3")
+                {
+                    this.Hide();
+                    Menu frm2 = new Menu();
+                    frm2.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+
+            }
+            con.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                con.Open();
+                MessageBox.Show("Conectado a la base de datos");
+                con.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo conectar con la base de datos");
+            }
+        }
+
+        private void bunifuImageButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bunifuImageButton3_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+    }
+}

@@ -1,0 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Prueba_tecno_Pablo_Hernandez
+{
+    public partial class Menu : Form
+    {
+        public Menu()
+        {
+            InitializeComponent();
+        }
+
+        private void bunifuImageButton2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void bunifuVTrackbar1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuImageButton1_Click(object sender, EventArgs e)
+        {
+            Drama c = new Drama();
+            c.Visible = true;
+            Visible = false;
+
+        }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuImageButton4_Click(object sender, EventArgs e)
+        {
+            Accion c = new Accion();
+            c.Visible = true;
+            Visible = false;
+
+        }
+
+        private void bunifuImageButton5_Click(object sender, EventArgs e)
+        {
+            Terror c = new Terror();
+            c.Visible = true;
+            Visible = false;
+
+        }
+
+        private void bunifuImageButton7_Click(object sender, EventArgs e)
+        {
+            Infantil c = new Infantil();
+            c.Visible = true;
+            Visible = false;
+
+        }
+
+        private void bunifuImageButton6_Click(object sender, EventArgs e)
+        {
+            Amor c = new Amor();
+            c.Visible = true;
+            Visible = false;
+
+        }
+
+        private void bunifuFlatButton3_Click(object sender, EventArgs e)
+        {
+            Top5 c = new Top5();
+            c.Visible = true;
+            Visible = false;
+
+        }
+    }
+}
